@@ -31,19 +31,7 @@ jobs:
       - name: Create the app package
         run: msbuild ScreenShare -t:rebuild -property:Configuration=Release,Platform=x64
 
-      - name: Create Release
-        uses: softprops/action-gh-release@v1
+      - uses: actions/upload-artifact@v4
         with:
-          # token 尤其需要注意，否则会出现 GitHub release failed with status: 403 undefined
-          # token 的生成可以详见 tips
-          token: ${{ secrets.GITHUBTOKEN }}
-          name: "Version 2.6.0 🚀"
-          tag_name: "v2.6.0"
-          draft: false
-          prerelease: false
-          generate_release_notes: true
-          # release 中的信息，一般为 changelog
-          body_path: CHANGELOG.md
-          # 你上传的 release 文件路径
-          files: |
-            D:\a\ScreenShare\ScreenShare\ScreenShare\bin\x64\Release\ScreenShare.exe
+          name: aseprite-windows-release
+          path: ScreenShare/bin/x64/Release/ScreenShare.exe
