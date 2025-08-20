@@ -38,6 +38,7 @@ jobs:
           # token 的生成可以详见 tips
           token: ${{ secrets.GITHUBTOKEN }}
           name: "Version 2.6.0 🚀"
+          tag_name: "v2.6.0"
           draft: false
           prerelease: false
           generate_release_notes: true
