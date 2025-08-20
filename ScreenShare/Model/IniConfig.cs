@@ -18,11 +18,11 @@ namespace ScreenShare.Model
             /// <summary>
             /// 开机自启
             /// </summary>
-            public static bool AutoLaunch { get; set; } = false;
+            public static bool AutoLaunch { get; set; } = true;
             /// <summary>
             /// 自动运行
             /// </summary>
-            public static bool AutoRun { get; set; } = false;
+            public static bool AutoRun { get; set; } = true;
             /// <summary>
             /// 开启黑名单
             /// </summary>

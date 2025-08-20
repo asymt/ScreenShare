@@ -56,7 +56,6 @@ namespace ScreenShare
             previewImgCms.Items.Add(reload);
             previewImgCms.Items.Add(save);
             Log("初始化完成！");
-            Start();
         }
 
         /// <summary>
@@ -889,11 +888,21 @@ namespace ScreenShare
             {
                 StatusManager.HttpService = new HttpService();
             }
-            if (!StatusManager.HttpService.Start(StatusManager.IpList[ipAddressComboBox.SelectedIndex].Item2, (int)ipPortNud.Value, HttpResponseCallback))
+            while (!StatusManager.HttpService.Start(StatusManager.IpList[ipAddressComboBox.SelectedIndex].Item2, (int)ipPortNud.Value, HttpResponseCallback))
             {
                 Log("http服务启动失败！请尝试更改IP地址或端口号。");
-                Utils.ShowError("http服务启动失败！请尝试更改IP地址或端口号。");
-                return;
+                //Utils.ShowError("http服务启动失败！请尝试更改IP地址或端口号。");
+                int SelectedIndex = ipAddressComboBox.SelectedIndex;
+                SelectedIndex++;
+                if (SelectedIndex == StatusManager.IpList.Count)
+                {
+                    Utils.ShowError("http服务启动失败！请尝试更改IP地址或端口号。");
+                    return;
+                }
+                else
+                {
+                    ipAddressComboBox.SelectedIndex=SelectedIndex;
+                }
             }
             // 启动webSocket服务
             if (StatusManager.WebSocketService == null)
