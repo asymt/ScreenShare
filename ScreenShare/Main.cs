@@ -56,6 +56,7 @@ namespace ScreenShare
             previewImgCms.Items.Add(reload);
             previewImgCms.Items.Add(save);
             Log("初始化完成！");
+            Start();
         }
 
         /// <summary>
