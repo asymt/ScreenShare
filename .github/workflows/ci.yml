@@ -30,3 +30,8 @@ jobs:
 
       - name: Create the app package
         run: msbuild ScreenShare -t:rebuild -property:Configuration=Release,Platform=x64
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aseprite-windows-release
+          path: ScreenShare/bin/x64/Release/ScreenShare.exe
